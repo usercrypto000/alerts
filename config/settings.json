@@ -1,0 +1,21 @@
+{
+  "minUsd": 0,
+  "minBridgeUsd": 0,
+  "alwaysAlertAll": 1,
+  "outgoingOnly": 1,
+  "priceCacheMs": 300000,
+  "ethPriceCacheMs": 60000,
+  "contractLabelCacheTtlMs": 604800000,
+  "heartbeatMinutes": 0,
+  "startupPing": 0,
+  "alertAllTx": 0,
+  "debug": 0,
+  "startupNetworkTimeoutMs": 15000,
+  "httpPollingMs": 4000,
+  "newContractDays": 30,
+  "maxBlocksPerRun": 200,
+  "maxRecentAlertKeys": 5000,
+  "stateBootstrapLatest": 1,
+  "maxTxsPerBlock": 2500,
+  "maxConcurrentReceipts": 6
+}

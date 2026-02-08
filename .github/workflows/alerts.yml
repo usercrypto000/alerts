@@ -1,0 +1,57 @@
+name: tracker-alerts
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tracker-alerts
+  cancel-in-progress: false
+
+jobs:
+  run-alerts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tracker once
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          RPC_URL: ${{ secrets.RPC_URL }}
+          ALCHEMY_API_KEY: ${{ secrets.ALCHEMY_API_KEY }}
+          ETHERSCAN_API_KEY: ${{ secrets.ETHERSCAN_API_KEY }}
+          STATE_FILE: state.json
+          MAX_BLOCKS_PER_RUN: ${{ vars.MAX_BLOCKS_PER_RUN }}
+          MAX_RECENT_ALERT_KEYS: ${{ vars.MAX_RECENT_ALERT_KEYS }}
+          STATE_BOOTSTRAP_LATEST: ${{ vars.STATE_BOOTSTRAP_LATEST }}
+        run: npm run alerts:once
+
+      - name: Commit updated state
+        run: |
+          if [ -z "$(git status --porcelain -- state.json)" ]; then
+            echo "No state changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state.json
+          git commit -m "chore(state): update tracker checkpoint [skip ci]"
+          git push

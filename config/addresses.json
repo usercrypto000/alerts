@@ -1,0 +1,390 @@
+{
+  "labeled": [
+    {
+      "address": "0x002a5dc50bbb8d5808e418aeeb9f060a2ca17346",
+      "label": "Dragonfly Capital"
+    },
+    {
+      "address": "0x05e793ce0c6027323ac150f6d45c2344d28b6019",
+      "label": "a16z"
+    },
+    {
+      "address": "0x090d4613473dee047c3f2706764f49e0821d256e",
+      "label": "Uniswap Token Distributor"
+    },
+    {
+      "address": "0x0a4c79ce84202b03e95b7a692e5d728d83c44c76",
+      "label": "ETH Whale #11"
+    },
+    {
+      "address": "0x0da0c3e52c977ed3cbc641ff02dd271c3ed55afe",
+      "label": "Gnosis DAO Safe"
+    },
+    {
+      "address": "0x0efccbb9e2c09ea29551879bd9da32362b32fc89",
+      "label": "Balancer Managed Treasury"
+    },
+    {
+      "address": "0x0f50d31b3eaefd65236dd3736b863cffa4c63c4e",
+      "label": "a16z (alt 3)"
+    },
+    {
+      "address": "0x10a19e7ee7d7f8a52822f6817de8ea18204f2e4f",
+      "label": "Balancer DAO Multisig"
+    },
+    {
+      "address": "0x11577a8a5baf1e25b9a2d89f39670f447d75c3cd",
+      "label": "Paradigm Multisig #1"
+    },
+    {
+      "address": "0x12a43b049a7d330cb8aeab5113032d18ae9a9030",
+      "label": "Lido LEGO Wallet"
+    },
+    {
+      "address": "0x166f54f44f271407f24aa1be415a730035637325",
+      "label": "Balancer Maxi Payments"
+    },
+    {
+      "address": "0x19793c7824be70ec58bb673ca42d2779d12581be",
+      "label": "Optimism Grants Wallet"
+    },
+    {
+      "address": "0x1b3cb81e51011b549d78bf720b0d924ac763a7c2",
+      "label": "ETH Whale #12"
+    },
+    {
+      "address": "0x220866b1a2219f40e72f5c628b65d54268ca3a9d",
+      "label": "Vitalik (Vb label wallet)"
+    },
+    {
+      "address": "0x2501c477d0a35545a387aa4a3eee4292a9a8b3f0",
+      "label": "Optimism Approved Budget"
+    },
+    {
+      "address": "0x25f2226b597e8f9514b3f68f00f494cf4f286491",
+      "label": "Aave Ecosystem Reserve"
+    },
+    {
+      "address": "0x2a82ae142b2e62cb7d10b55e323acb1cab663a26",
+      "label": "Optimism Allocated Budget"
+    },
+    {
+      "address": "0x2cba76638bf0c7d965fc8f2253a91ead40cb83c8",
+      "label": "Maker Top MKR Holder"
+    },
+    {
+      "address": "0x2e21f5d32841cf8c7da805185a041400bf15f21a",
+      "label": "Stani Kulechov (Aave)"
+    },
+    {
+      "address": "0x2eb5e5713a874786af6da95f6e4deacedb5dc246",
+      "label": "Cobie"
+    },
+    {
+      "address": "0x3bfc20f0b9afcace800d73d2191166ff16540258",
+      "label": "ETH Whale #7"
+    },
+    {
+      "address": "0x3d9819210a31b4961b30ef54be2aed79b9c9cd3b",
+      "label": "Compound Comptroller"
+    },
+    {
+      "address": "0x3ddfa8ec3052539b6c9549f12cea2c295cff5296",
+      "label": "Justin Sun"
+    },
+    {
+      "address": "0x3e40d73eb977dc6a537af587d48316fee66e9c8c",
+      "label": "Lido Agent Multisig"
+    },
+    {
+      "address": "0x424bde99fcfb68c5a1218fd3215caffd031f19c4",
+      "label": "Polygon Token Mapping"
+    },
+    {
+      "address": "0x42f9134e9d3bf7eee1f8a5ac2a4328b059e7468c",
+      "label": "Kain Warwick (Synthetix)"
+    },
+    {
+      "address": "0x431e81e5dfb5a24541b5ff8762bdef3f32f96354",
+      "label": "Andre Cronje"
+    },
+    {
+      "address": "0x464c71f6c2f760dda6093dcb91c24c39e5d6e18c",
+      "label": "Aave Treasury Collector V2"
+    },
+    {
+      "address": "0x467947ee34af926cf1dcac093870f613c96b1e0c",
+      "label": "Curve Emergency DAO"
+    },
+    {
+      "address": "0x46abfe1c972fca43766d6ad70e1c1df72f4bb4d1",
+      "label": "Synthetix Ambassador Council"
+    },
+    {
+      "address": "0x4750c43867ef5f89869132eccf19b9b6c4286e1a",
+      "label": "Uniswap Treasury Vester 1"
+    },
+    {
+      "address": "0x534a0076fb7c2b1f83fa21497429ad7ad3bd7587",
+      "label": "Arthur Hayes (alt)"
+    },
+    {
+      "address": "0x5be9a4959308a0d0c7bc0870e319314d8d957dbb",
+      "label": "World Liberty Financial"
+    },
+    {
+      "address": "0x5ea9681c3ab9b5739810f8b91ae65ec47de62119",
+      "label": "Gary Vaynerchuk"
+    },
+    {
+      "address": "0x642ae78fafbb8032da552d619ad43f1d81e4dd7c",
+      "label": "Maker Redeemer Contract"
+    },
+    {
+      "address": "0x1102471Eb3378FEE427121c9EfcEa452E4B6B75e",
+      "label": "AZTEC Treasury Reserve B",
+      "role": "Holds 927M AZTEC (8.96%)",
+      "description": "Contract likely used for vesting, allocation, or locked treasury.",
+      "alwaysAlert": true
+    },
+    {
+      "address": "0x92Ba0FD39658105FaC4dF2B9BADE998B5816b350",
+      "label": "AZTEC Treasury Reserve A",
+      "role": "Holds 2.76B AZTEC (26.7%)",
+      "description": "Took contract ownership, likely a governance or controller wallet.",
+      "alwaysAlert": true
+    },
+    {
+      "address": "0x13620833364653fa125cCDD7Cf54b9e4A22AB6d9",
+      "label": "aztec_hold_wallet_002",
+      "description": "Holds 2.65B AZTEC, directly funded by sequencer-linked contract",
+      "alwaysAlert": true
+    },
+    {
+      "address": "0xcfd374ba3996AE34CaBf97b43857b0c54F131D4f",
+      "label": "aztec_funding_contract_002",
+      "description": "Funded above wallet, deployed by an upstream contract deployer",
+      "alwaysAlert": true
+    },
+    {
+      "address": "0x1D93fE338A035f297819EA867275661a4f5B4fdD",
+      "label": "Internal Ops Wallet",
+      "role": "Deployed 0xD4f used in Treasury B chain",
+      "alwaysAlert": true
+    },
+    {
+      "address": "0xE298a76986336686CC3566469e3520d23D1a8aaD",
+      "label": "Aztec Sequencer",
+      "role": "Self-funded, key control wallet — funded both treasuries",
+      "description": "Direct sender of 0.1 ETH to 0x92Ba. Likely the protocol’s L2 contract gateway or operational wallet.",
+      "alwaysAlert": true
+    },
+    {
+      "address": "0xD4CD0b1EF54E8E4D73f68b01b5ccc125b13E3d1e",
+      "label": "AZTEC Deployer A",
+      "role": "Created the Sequencer wallet",
+      "description": "Deployed 0xaaD. This wallet likely part of the protocol’s core dev team or multisig.",
+      "alwaysAlert": true
+    },
+    {
+      "address": "0x85e51a78FE8FE21d881894206A9adbf54e3Df8c3",
+      "label": "AZTEC Deployer B",
+      "role": "Deployed Treasury B",
+      "alwaysAlert": true
+    },
+    {
+      "address": "0x7AbfE0DA7383bC9D8DEB695DBd4D9839C1e02B26",
+      "label": "Pre-Deployment Funder",
+      "description": "Funded the deployer, likely internal setup or institutional relay",
+      "alwaysAlert": true
+    },
+    {
+      "address": "0x316c9dFd5c69FC16CC59B28A2376390858C0d650",
+      "label": "Genesis Root",
+      "description": "Funded 0x3DBe",
+      "alwaysAlert": true
+    },
+    {
+      "address": "0x90de41842F9b2695D352903099f5664b590a3DBe",
+      "label": "Early Treasury Wallet",
+      "description": "Funded 0x2B26 over 5 years ago — probable seed funder, exchange, or treasury origin",
+      "alwaysAlert": true
+    },
+    {
+      "address": "0x6508ef65b0bd57eabd0f1d52685a70433b2d290b",
+      "label": "Curve Treasury"
+    },
+    {
+      "address": "0x6b411100c72ba2445e50ffd20839c28b3546de7c",
+      "label": "Murad (MustStopMurad)"
+    },
+    {
+      "address": "0x6e0a1ddad894e6466d405bb73377f0a257278d74",
+      "label": "Wintermute (alt)"
+    },
+    {
+      "address": "0x73af3bcf944a6559933396c1577b257e2054d935",
+      "label": "ETH Whale #14"
+    },
+    {
+      "address": "0x75a52c0e32397a3fc0c052e2ceb3479802713cf4",
+      "label": "Balancer Linear Pool Control"
+    },
+    {
+      "address": "0x7c68c42de679ffb0f16216154c996c354cf1161b",
+      "label": "Balancer Protocol Fees"
+    },
+    {
+      "address": "0x7d325a9c8f10758188641fe91cfd902499edc782",
+      "label": "a16z (alt 2)"
+    },
+    {
+      "address": "0x8103683202aa8da10536036edef04cdd865c225e",
+      "label": "ETH Whale #9"
+    },
+    {
+      "address": "0x81b2587f04ddf814094ab88efdd4f29ee3407437",
+      "label": "CZ (Changpeng Zhao)"
+    },
+    {
+      "address": "0x820fb25352bb0c5e03e07afc1d86252ffd2f0a18",
+      "label": "Paradigm Multisig #2"
+    },
+    {
+      "address": "0x849d52316331967b6ff1198e5e32a0eb168d039d",
+      "label": "Gnosis Active Treasury"
+    },
+    {
+      "address": "0x87d93d9b2c672bf9c9642d853a8682546a5012b5",
+      "label": "Lido Rewards Committee"
+    },
+    {
+      "address": "0x8ee7d9235e01e6b42345120b5d270bdb763624c7",
+      "label": "Maker Treasury #2"
+    },
+    {
+      "address": "0x99f4176ee457afedffcb1839c7ab7a030a5e4a92",
+      "label": "Synthetix Treasury Council"
+    },
+    {
+      "address": "0x9d727911b54c455b0071a7b682fcf4bc444b5596",
+      "label": "ZachXBT"
+    },
+    {
+      "address": "0x9d939a9bd16c1e66f37df5ad07a11b31dd63a139",
+      "label": "a16z (alt)"
+    },
+    {
+      "address": "0x9fc3dc011b461664c835f2527fffb1169b3c213e",
+      "label": "Ethereum Foundation DeFi Multisig"
+    },
+    {
+      "address": "0xa02fc823cce0d016bd7e17ac684c9abab2d6d647",
+      "label": "Lido Treasury Committee"
+    },
+    {
+      "address": "0xa29f61256e948f3fb707b4b3b138c5cbb9ef9888",
+      "label": "Balancer Emergency subDAO"
+    },
+    {
+      "address": "0xa3c5a1e09150b75ff251c1a7815a07182c3de2fb",
+      "label": "Convex Treasury Multisig"
+    },
+    {
+      "address": "0xa86e3d1c80a750a310b484fb9bdc470753a7506f",
+      "label": "Arthur Hayes"
+    },
+    {
+      "address": "0xaf0b85097971e4149a294f462868df07ed41cc70",
+      "label": "Paradigm (paradigm-crypto.eth)"
+    },
+    {
+      "address": "0xb8b9977a5b8920ad74ff3eea8d0267d09cb86926",
+      "label": "IOSG Ventures"
+    },
+    {
+      "address": "0xbe8e3e3618f7474f8cb1d074a26affef007e98fb",
+      "label": "Maker Treasury #1"
+    },
+    {
+      "address": "0xbeb5fc579115071764c7423a4f12edde41f106ed",
+      "label": "ETH Whale #10"
+    },
+    {
+      "address": "0xc38c5f97b34e175ffd35407fc91a937300e33860",
+      "label": "Balancer LM Multisig"
+    },
+    {
+      "address": "0xca8d6f69d8f32516a109df68b623452cc9f5e64d",
+      "label": "Paradigm Multisig #3"
+    },
+    {
+      "address": "0xca8fa8f0b631ecdb18cda619c4fc9d197c8affca",
+      "label": "ETH Whale #6"
+    },
+    {
+      "address": "0xd28b432f06cb64692379758b88b5fcdfc4f56922",
+      "label": "Safe/Gnosis Joint Treasury"
+    },
+    {
+      "address": "0xd3a22590f8243f8e83ac230d1842c9af0404c4a1",
+      "label": "ETH Whale #8"
+    },
+    {
+      "address": "0xd61415f6c5d93027778ceab5f099f64c29f58fd7",
+      "label": "Paradigm (paradigm.eth)"
+    },
+    {
+      "address": "0xd6a984153acb6c9e2d788f08c2465a1358bb89a7",
+      "label": "Gary Vaynerchuk (alt)"
+    },
+    {
+      "address": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+      "label": "Vitalik Buterin"
+    },
+    {
+      "address": "0xdbf5e9c5206d0db70a90108bf936da60221dc080",
+      "label": "Wintermute"
+    },
+    {
+      "address": "0xdfe14fa0c322e34039d33400638771876398ad88",
+      "label": "IOSG Ventures (alt)"
+    },
+    {
+      "address": "0xe3953d9d317b834592ab58ab2c7a6ad22b54075d",
+      "label": "Uniswap Treasury Vester 2"
+    },
+    {
+      "address": "0xe3997288987e6297ad550a69b31439504f513267",
+      "label": "Curve Community Fund"
+    },
+    {
+      "address": "0xe4553b743e74da3424ac51f8c1e586fd43ae226f",
+      "label": "Optimism Locked Grants"
+    },
+    {
+      "address": "0xe92d1a43df510f82c66382592a047d288f85226f",
+      "label": "ETH Whale #5"
+    },
+    {
+      "address": "0xe94b5eec1fa96ceecbd33ef5baa8d00e4493f4f3",
+      "label": "SushiSwap Treasury Multisig"
+    },
+    {
+      "address": "0xe9825fd47c5d863b1aecba3707abcc7c8b49b88d",
+      "label": "Ansem (@blknoiz06)"
+    },
+    {
+      "address": "0xf4a80929163c5179ca042e1b292f5efbbe3d89e6",
+      "label": "Balancer Fee Setter"
+    },
+    {
+      "address": "0xfa7d2a996ac6350f4b56c043112da0366a59b74c",
+      "label": "Polygon PoS Upgrade Multisig"
+    },
+    {
+      "address": "0xfeb4acf3df3cdea7399794d0869ef76a6efaff52",
+      "label": "Yearn Treasury Multisig"
+    }
+  ]
+}
