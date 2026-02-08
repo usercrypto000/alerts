@@ -569,6 +569,37 @@ async function fetchWithTimeout(url, init = {}, timeoutMs = 12_000) {
   }
 }
 
+function isRateLimitError(e) {
+  const msg = String(e?.message || '').toLowerCase();
+  if (msg.includes('compute units per second') || msg.includes('rate limit') || msg.includes('too many requests')) return true;
+  const innerCode = e?.error?.code;
+  if (innerCode === 429) return true;
+  const code = e?.code;
+  if (code === 429) return true;
+  return false;
+}
+
+async function sleepMs(ms) {
+  await new Promise((r) => setTimeout(r, ms));
+}
+
+async function withRateLimitRetry(fn, { retries = 6, baseDelayMs = 400 } = {}) {
+  let attempt = 0;
+  // Retries only on provider throttling; otherwise fail fast.
+  while (true) {
+    try {
+      return await fn();
+    } catch (e) {
+      attempt += 1;
+      if (!isRateLimitError(e) || attempt > retries) throw e;
+      const backoff = Math.min(10_000, baseDelayMs * 2 ** (attempt - 1));
+      const jitter = Math.floor(Math.random() * 250);
+      if (debug) console.warn(`RPC rate limit; retry ${attempt}/${retries} in ${backoff + jitter}ms`);
+      await sleepMs(backoff + jitter);
+    }
+  }
+}
+
 async function sendTelegram(text) {
   const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
   const res = await fetchWithTimeout(
@@ -1337,7 +1368,7 @@ async function handleTx(blockNumber, tx, receipt, network) {
 
 async function handleBlock(blockNumber, network) {
   blocksProcessed += 1;
-  const block = await provider.getBlock(blockNumber, true);
+  const block = await withRateLimitRetry(() => provider.getBlock(blockNumber, true));
   if (!block) return;
   if (Array.isArray(block.transactions) && block.transactions.length > maxTxsPerBlock) return;
 
@@ -1354,25 +1385,29 @@ async function handleBlock(blockNumber, network) {
     if (fromMon || toMon || deploy || known) candidate.add(tx.hash);
   }
 
-  // Add ERC20/ERC721/1155 transfers involving monitored addresses (including incoming transfers).
-  const logQueries = [
-    { name: 'Transfer from', topics: [TOPIC_TRANSFER, monitoredTopics, null] },
-    { name: 'Transfer to', topics: [TOPIC_TRANSFER, null, monitoredTopics] },
-    { name: '1155 single from', topics: [TOPIC_ERC1155_SINGLE, null, monitoredTopics, null] },
-    { name: '1155 single to', topics: [TOPIC_ERC1155_SINGLE, null, null, monitoredTopics] },
-    { name: '1155 batch from', topics: [TOPIC_ERC1155_BATCH, null, monitoredTopics, null] },
-    { name: '1155 batch to', topics: [TOPIC_ERC1155_BATCH, null, null, monitoredTopics] }
-  ];
+  // In outgoing-only mode we already capture all txs initiated by monitored wallets via block.transactions.
+  // The extra getLogs fanout is only needed to discover incoming token/NFT transfers where tx.from isn't monitored.
+  if (!outgoingOnly) {
+    // Add ERC20/ERC721/1155 transfers involving monitored addresses (including incoming transfers).
+    const logQueries = [
+      { name: 'Transfer from', topics: [TOPIC_TRANSFER, monitoredTopics, null] },
+      { name: 'Transfer to', topics: [TOPIC_TRANSFER, null, monitoredTopics] },
+      { name: '1155 single from', topics: [TOPIC_ERC1155_SINGLE, null, monitoredTopics, null] },
+      { name: '1155 single to', topics: [TOPIC_ERC1155_SINGLE, null, null, monitoredTopics] },
+      { name: '1155 batch from', topics: [TOPIC_ERC1155_BATCH, null, monitoredTopics, null] },
+      { name: '1155 batch to', topics: [TOPIC_ERC1155_BATCH, null, null, monitoredTopics] }
+    ];
 
-  // Chunk monitored topics to avoid oversized RPC payloads on some providers.
-  const topicChunks = chunk(monitoredTopics, 12);
-  for (const q of logQueries) {
-    for (const topicsChunk of topicChunks) {
-      const topics = q.topics.map((t) => (t === monitoredTopics ? topicsChunk : t));
-      const logs = await provider
-        .getLogs({ fromBlock: blockNumber, toBlock: blockNumber, topics })
-        .catch(() => []);
-      for (const l of logs) candidate.add(l.transactionHash);
+    // Chunk monitored topics to avoid oversized RPC payloads on some providers.
+    const topicChunks = chunk(monitoredTopics, 12);
+    for (const q of logQueries) {
+      for (const topicsChunk of topicChunks) {
+        const topics = q.topics.map((t) => (t === monitoredTopics ? topicsChunk : t));
+        const logs = await withRateLimitRetry(() =>
+          provider.getLogs({ fromBlock: blockNumber, toBlock: blockNumber, topics }).catch(() => [])
+        );
+        for (const l of logs) candidate.add(l.transactionHash);
+      }
     }
   }
 
@@ -1383,9 +1418,9 @@ async function handleBlock(blockNumber, network) {
     hashes,
     maxConcurrentReceipts,
     async (hash) => {
-      const tx = txByHash.get(hash) || (await provider.getTransaction(hash).catch(() => null));
+      const tx = txByHash.get(hash) || (await withRateLimitRetry(() => provider.getTransaction(hash).catch(() => null)));
       if (!tx) return;
-      const receipt = await provider.getTransactionReceipt(hash).catch(() => null);
+      const receipt = await withRateLimitRetry(() => provider.getTransactionReceipt(hash).catch(() => null));
       if (!receipt) return;
       await handleTx(blockNumber, tx, receipt, network).catch((e) => {
         console.error(`tx ${hash} failed:`, e?.message || e);
@@ -1442,11 +1477,12 @@ async function runOnce(network, options = {}) {
   const state = loadStateFromFile(stateFile);
   setRunStateContext(stateFile, state, true);
 
-  const latestBlock = await provider.getBlockNumber();
-  if (state.lastProcessedBlock == null) {
+  const latestBlock = await withRateLimitRetry(() => provider.getBlockNumber());
+  const isUninitialized = state.lastProcessedBlock == null || state.lastProcessedBlock === 0;
+  if (isUninitialized) {
     state.lastProcessedBlock = stateBootstrapLatest ? Math.max(0, latestBlock - 1) : 0;
     saveRunStateIfNeeded();
-    console.log(`Initialized state file at block ${state.lastProcessedBlock}`);
+    console.log(`Initialized state file at block ${state.lastProcessedBlock} (latest=${latestBlock})`);
   }
 
   const fromBlock = state.lastProcessedBlock + 1;
