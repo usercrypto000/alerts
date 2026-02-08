@@ -385,6 +385,10 @@
     {
       "address": "0xfeb4acf3df3cdea7399794d0869ef76a6efaff52",
       "label": "Yearn Treasury Multisig"
+    },
+    {
+      "address": "0xa27ec0006e59f245217ff08cd52a7e8b169e62d2",
+      "label": "Tracked Contract A27E"
     }
   ]
 }

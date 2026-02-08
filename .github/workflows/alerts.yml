@@ -22,6 +22,25 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Preflight (secrets)
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          RPC_URL: ${{ secrets.RPC_URL }}
+          ALCHEMY_API_KEY: ${{ secrets.ALCHEMY_API_KEY }}
+        run: |
+          missing=0
+          if [ -z "${TELEGRAM_BOT_TOKEN}" ]; then echo "Missing secret: TELEGRAM_BOT_TOKEN"; missing=1; fi
+          if [ -z "${CHAT_ID}" ]; then echo "Missing secret: CHAT_ID"; missing=1; fi
+          if [ -z "${RPC_URL}" ] && [ -z "${ALCHEMY_API_KEY}" ]; then
+            echo "Missing provider: set RPC_URL or ALCHEMY_API_KEY"
+            missing=1
+          fi
+          if [ "${missing}" -ne 0 ]; then
+            echo "Preflight failed. Add secrets at: Settings -> Secrets and variables -> Actions"
+            exit 1
+          fi
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -39,9 +58,9 @@ jobs:
           ALCHEMY_API_KEY: ${{ secrets.ALCHEMY_API_KEY }}
           ETHERSCAN_API_KEY: ${{ secrets.ETHERSCAN_API_KEY }}
           STATE_FILE: state.json
-          MAX_BLOCKS_PER_RUN: ${{ vars.MAX_BLOCKS_PER_RUN }}
-          MAX_RECENT_ALERT_KEYS: ${{ vars.MAX_RECENT_ALERT_KEYS }}
-          STATE_BOOTSTRAP_LATEST: ${{ vars.STATE_BOOTSTRAP_LATEST }}
+          MAX_BLOCKS_PER_RUN: ${{ vars.MAX_BLOCKS_PER_RUN || '200' }}
+          MAX_RECENT_ALERT_KEYS: ${{ vars.MAX_RECENT_ALERT_KEYS || '5000' }}
+          STATE_BOOTSTRAP_LATEST: ${{ vars.STATE_BOOTSTRAP_LATEST || '1' }}
         run: npm run alerts:once
 
       - name: Commit updated state

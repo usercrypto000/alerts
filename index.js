@@ -91,12 +91,20 @@ function makeEtherscanUrl(network) {
 }
 
 const settings = readJson('config/settings.json', {});
-const minUsd = Number(process.env.MIN_USD ?? settings.minUsd ?? 50000);
-const minBridgeUsd = Number(process.env.MIN_BRIDGE_USD ?? settings.minBridgeUsd ?? 20000);
+function numberFromEnv(value) {
+  if (value == null) return null;
+  const s = String(value).trim();
+  if (!s) return null;
+  const n = Number(s);
+  return Number.isFinite(n) ? n : null;
+}
+
+const minUsd = numberFromEnv(process.env.MIN_USD) ?? Number(settings.minUsd ?? 50000);
+const minBridgeUsd = numberFromEnv(process.env.MIN_BRIDGE_USD) ?? Number(settings.minBridgeUsd ?? 20000);
 const alwaysAlertAll = String(process.env.ALWAYS_ALERT_ALL ?? settings.alwaysAlertAll ?? '').trim() === '1';
 const outgoingOnly = String(process.env.OUTGOING_ONLY ?? settings.outgoingOnly ?? '1').trim() === '1';
-const maxBlocksPerRun = Number(process.env.MAX_BLOCKS_PER_RUN ?? settings.maxBlocksPerRun ?? 200);
-const maxRecentAlertKeys = Number(process.env.MAX_RECENT_ALERT_KEYS ?? settings.maxRecentAlertKeys ?? 5000);
+const maxBlocksPerRun = numberFromEnv(process.env.MAX_BLOCKS_PER_RUN) ?? Number(settings.maxBlocksPerRun ?? 200);
+const maxRecentAlertKeys = numberFromEnv(process.env.MAX_RECENT_ALERT_KEYS) ?? Number(settings.maxRecentAlertKeys ?? 5000);
 const stateBootstrapLatest = String(process.env.STATE_BOOTSTRAP_LATEST ?? settings.stateBootstrapLatest ?? '1').trim() === '1';
 const defaultStateFile = (process.env.STATE_FILE ?? settings.stateFile ?? 'state.json').trim();
 const priceCacheMs = Number(settings.priceCacheMs ?? 300000);
@@ -104,11 +112,11 @@ const ethPriceCacheMs = Number(settings.ethPriceCacheMs ?? 60000);
 const maxTxsPerBlock = Number(settings.maxTxsPerBlock ?? 2500);
 const maxConcurrentReceipts = Number(settings.maxConcurrentReceipts ?? 6);
 const contractLabelCacheTtlMs = Number(settings.contractLabelCacheTtlMs ?? 7 * 24 * 60 * 60 * 1000);
-const heartbeatMinutes = Number(process.env.HEARTBEAT_MINUTES ?? settings.heartbeatMinutes ?? 0);
+const heartbeatMinutes = numberFromEnv(process.env.HEARTBEAT_MINUTES) ?? Number(settings.heartbeatMinutes ?? 0);
 const startupPing = String(process.env.STARTUP_PING ?? settings.startupPing ?? '').trim() === '1';
 const alertAllTx = String(process.env.ALERT_ALL_TX ?? settings.alertAllTx ?? '').trim() === '1';
 const debug = String(process.env.DEBUG ?? settings.debug ?? '').trim() === '1';
-const newContractDays = Number(process.env.NEW_CONTRACT_DAYS ?? settings.newContractDays ?? 30);
+const newContractDays = numberFromEnv(process.env.NEW_CONTRACT_DAYS) ?? Number(settings.newContractDays ?? 30);
 
 function buildAlchemyWsUrl(apiKey) {
   const net = (process.env.ALCHEMY_NETWORK || 'eth-mainnet').trim();
